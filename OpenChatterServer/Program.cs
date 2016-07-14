@@ -12,9 +12,9 @@ namespace OpenChatterServer {
             // Write welcome message
             Console.WriteLine("Welcome to OpenChatterServer!");
 
-            // Initialize the "core" ChatServer object
+            // Initialize the "core" ChatServerCore object
             int port = 3333;
-            ChatServer server = new ChatServer(port);
+            ChatServerCore server = new ChatServerCore(port);
 
             // Start the server
             server.Start();

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.IO;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,80 +16,105 @@ using EventHandler = System.EventHandler;
 
 
 namespace ServerCoreLib {
-    internal class ServerConnection : IDisposable {
+    public class ServerConnection : IDisposable {
 
         private TcpClient client;
         public string Name { get; private set; }
         private bool active = false;
+        private bool connected = false;
+
+        private Action<ServerConnection, ChatCommand> OnReceivedCommand;
+        private Action<ServerConnection> OnActivated;
 
         private NetworkStream stream;
         private StreamWriter writer;
         private StreamReader reader;
+        private CommandParser parser;
 
-        // Ctor
-        public ServerConnection(TcpClient client) {
+        /// <summary>
+        /// The constructor for the ServerConnection class
+        /// </summary>
+        /// <param name="client"> The TcpClient of the connection </param>
+        public ServerConnection (
+            TcpClient client, 
+            Action<ServerConnection, ChatCommand> onReceivedCommand,
+            Action<ServerConnection> onActivated
+            ) {
             // Instantiate the client and the streams
             this.client = client;
+            Name = "anonymous";
+            OnReceivedCommand = onReceivedCommand;
+            OnActivated = onActivated;
+        }
+
+
+        /// <summary>
+        /// Starts the ServerConnection to listen for commands
+        /// </summary>
+        public void Start() {
+
+            // Initialize streams
             stream = client.GetStream();
             writer = new StreamWriter(stream);
             reader = new StreamReader(stream);
+            this.connected = true;
+
+            ListenForCommandsAsync();
+        }
+        
+        
+        /// <summary>
+        /// Listens asynchronously for commands
+        /// </summary>
+        private async void ListenForCommandsAsync() {
+            while (connected) {
+                //Fetch a command
+                string response = await reader.ReadLineAsync();
+                ChatCommand command = CommandParser.ParseClientCommand(response);
+
+                // Invoke the event
+                OnReceivedCommand(this, command);
+
+                // Wait for a while
+                Thread.Sleep(100);
+            }
         }
 
-        public async Task ReadNameAsync() {
-            await writer.WriteLineAsync(ServerCommandType.SendNameRequest);
-            await writer.FlushAsync();
-
-            // Get response from client  
-            string response = await reader.ReadLineAsync();
-
-            // Parse the response to gather info
-            string[] splitted = response.Split(' ');
-
-            // TODO: Make this work
-            if (splitted[0] != ClientCommandType.ReceiveNameRequest)
-                throw new InvalidDataException("Client's name response did not match protocol");
-
-            // Update client's name
-            Name = splitted[1];
+        /// <summary>
+        /// Activates the connection with a given name
+        /// Invokes the OnActivated event
+        /// </summary>
+        /// <param name="name"></param>
+        public void Activate(string name) {
             active = true;
-
-            await ListenForCommandsAsync();
+            Name = name;
+            OnActivated(this);
         }
-
+        
+        
+        /// <summary>
+        /// Converts the ServerConnection to a string for
+        /// easy output
+        /// </summary>
+        /// <returns></returns>
         public override string ToString() {
             return $"{Name} [{client.Client.RemoteEndPoint}]";
         }
 
-        
-
-        public async Task SendConnAckAsync() {
-            await writer.WriteLineAsync(ServerCommandType.SendConnectACK);
-            await writer.FlushAsync();
-        }
-
-        private async Task ListenForCommandsAsync() {
-            while (true) {
-                string response = await reader.ReadLineAsync();
-
-                // If client has disconnected
-                if (response == ClientCommandType.ReceiveDisconnect) {
-                    Dispose();
-                    return;
-                }
-
-                // Wait for a while
-                Thread.Sleep(1000);
-            }
-        }
-
+        /// <summary>
+        /// Destroys the object and closes the streams
+        /// </summary>
         public void Dispose() {
             active = false;
-
-            Console.WriteLine($"{this} disconnected.");
+            connected = false;
 
             writer.Close();
             reader.Close();
             client.Close();
+
+            //TODO: OnDispose();
         }
+
+        
     }
 }

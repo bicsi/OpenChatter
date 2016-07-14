@@ -5,3 +5,10 @@ c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\ServerCoreLib\o
 c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\ServerCoreLib\obj\Debug\ServerCoreLib.csprojResolveAssemblyReference.cache
 C:\Users\bicsi\documents\visual studio 2015\Projects\OpenChatter\ServerCoreLib\bin\Debug\CommandHandler.dll
 C:\Users\bicsi\documents\visual studio 2015\Projects\OpenChatter\ServerCoreLib\bin\Debug\CommandHandler.pdb
+D:\.Net Projects\OpenChatter\ServerCoreLib\bin\Debug\ServerCoreLib.dll
+D:\.Net Projects\OpenChatter\ServerCoreLib\bin\Debug\ServerCoreLib.pdb
+D:\.Net Projects\OpenChatter\ServerCoreLib\bin\Debug\CommandHandler.dll
+D:\.Net Projects\OpenChatter\ServerCoreLib\bin\Debug\CommandHandler.pdb
+D:\.Net Projects\OpenChatter\ServerCoreLib\obj\Debug\ServerCoreLib.csprojResolveAssemblyReference.cache
+D:\.Net Projects\OpenChatter\ServerCoreLib\obj\Debug\ServerCoreLib.dll
+D:\.Net Projects\OpenChatter\ServerCoreLib\obj\Debug\ServerCoreLib.pdb

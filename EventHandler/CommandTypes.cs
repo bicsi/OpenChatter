@@ -12,8 +12,9 @@ namespace CommandHandler {
     }
 
     public class ClientCommandType {
-        public const string ReceiveNameRequest = "name";
-        public const string ReceiveDisconnect = "killed";
+        public const string SendName = "name";
+        public const string SendDisconnect = "killed";
+        public const string SendMessage = "message";
     }
 
     

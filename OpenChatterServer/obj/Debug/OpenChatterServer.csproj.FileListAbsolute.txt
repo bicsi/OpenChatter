@@ -6,3 +6,13 @@ c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\OpenChatterServ
 c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\OpenChatterServer\obj\Debug\OpenChatterServer.csprojResolveAssemblyReference.cache
 c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\OpenChatterServer\obj\Debug\OpenChatterServer.exe
 c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\OpenChatterServer\obj\Debug\OpenChatterServer.pdb
+D:\.Net Projects\OpenChatter\OpenChatterServer\bin\Debug\OpenChatterServer.exe.config
+D:\.Net Projects\OpenChatter\OpenChatterServer\bin\Debug\OpenChatterServer.exe
+D:\.Net Projects\OpenChatter\OpenChatterServer\bin\Debug\OpenChatterServer.pdb
+D:\.Net Projects\OpenChatter\OpenChatterServer\bin\Debug\ServerCoreLib.dll
+D:\.Net Projects\OpenChatter\OpenChatterServer\bin\Debug\ServerCoreLib.pdb
+D:\.Net Projects\OpenChatter\OpenChatterServer\obj\Debug\OpenChatterServer.csprojResolveAssemblyReference.cache
+D:\.Net Projects\OpenChatter\OpenChatterServer\obj\Debug\OpenChatterServer.exe
+D:\.Net Projects\OpenChatter\OpenChatterServer\obj\Debug\OpenChatterServer.pdb
+D:\.Net Projects\OpenChatter\OpenChatterServer\bin\Debug\CommandHandler.dll
+D:\.Net Projects\OpenChatter\OpenChatterServer\bin\Debug\CommandHandler.pdb
