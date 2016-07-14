@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenChatterClient", "OpenChatter\OpenChatterClient.csproj", "{BEC9FE72-319F-40D8-A0B4-1BE78E4C15BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenChatterServer", "OpenChatterServer\OpenChatterServer.csproj", "{EEDD1279-B173-4898-8F4B-27FCDB332908}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerCoreLib", "ServerCoreLib\ServerCoreLib.csproj", "{3B8CD3AC-CAD5-47DA-B6F9-0A169FEFBCFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandHandler", "EventHandler\CommandHandler.csproj", "{B14BABC7-5CE8-4DF8-96AD-6BE42B66568C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BEC9FE72-319F-40D8-A0B4-1BE78E4C15BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEC9FE72-319F-40D8-A0B4-1BE78E4C15BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEC9FE72-319F-40D8-A0B4-1BE78E4C15BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEC9FE72-319F-40D8-A0B4-1BE78E4C15BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEDD1279-B173-4898-8F4B-27FCDB332908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEDD1279-B173-4898-8F4B-27FCDB332908}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEDD1279-B173-4898-8F4B-27FCDB332908}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEDD1279-B173-4898-8F4B-27FCDB332908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B8CD3AC-CAD5-47DA-B6F9-0A169FEFBCFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B8CD3AC-CAD5-47DA-B6F9-0A169FEFBCFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B8CD3AC-CAD5-47DA-B6F9-0A169FEFBCFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B8CD3AC-CAD5-47DA-B6F9-0A169FEFBCFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B14BABC7-5CE8-4DF8-96AD-6BE42B66568C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B14BABC7-5CE8-4DF8-96AD-6BE42B66568C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B14BABC7-5CE8-4DF8-96AD-6BE42B66568C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B14BABC7-5CE8-4DF8-96AD-6BE42B66568C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,8 @@
+c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\OpenChatterServer\bin\Debug\OpenChatterServer.exe.config
+c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\OpenChatterServer\bin\Debug\OpenChatterServer.exe
+c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\OpenChatterServer\bin\Debug\OpenChatterServer.pdb
+c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\OpenChatterServer\bin\Debug\ServerCoreLib.dll
+c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\OpenChatterServer\bin\Debug\ServerCoreLib.pdb
+c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\OpenChatterServer\obj\Debug\OpenChatterServer.csprojResolveAssemblyReference.cache
+c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\OpenChatterServer\obj\Debug\OpenChatterServer.exe
+c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\OpenChatterServer\obj\Debug\OpenChatterServer.pdb

@@ -1,0 +1,7 @@
+c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\ServerCoreLib\bin\Debug\ServerCoreLib.dll
+c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\ServerCoreLib\bin\Debug\ServerCoreLib.pdb
+c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\ServerCoreLib\obj\Debug\ServerCoreLib.dll
+c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\ServerCoreLib\obj\Debug\ServerCoreLib.pdb
+c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\ServerCoreLib\obj\Debug\ServerCoreLib.csprojResolveAssemblyReference.cache
+C:\Users\bicsi\documents\visual studio 2015\Projects\OpenChatter\ServerCoreLib\bin\Debug\CommandHandler.dll
+C:\Users\bicsi\documents\visual studio 2015\Projects\OpenChatter\ServerCoreLib\bin\Debug\CommandHandler.pdb

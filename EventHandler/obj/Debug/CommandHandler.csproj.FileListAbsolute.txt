@@ -1,0 +1,5 @@
+C:\Users\bicsi\documents\visual studio 2015\Projects\OpenChatter\EventHandler\obj\Debug\CommandHandler.csprojResolveAssemblyReference.cache
+C:\Users\bicsi\documents\visual studio 2015\Projects\OpenChatter\EventHandler\bin\Debug\CommandHandler.dll
+C:\Users\bicsi\documents\visual studio 2015\Projects\OpenChatter\EventHandler\bin\Debug\CommandHandler.pdb
+C:\Users\bicsi\documents\visual studio 2015\Projects\OpenChatter\EventHandler\obj\Debug\CommandHandler.dll
+C:\Users\bicsi\documents\visual studio 2015\Projects\OpenChatter\EventHandler\obj\Debug\CommandHandler.pdb
