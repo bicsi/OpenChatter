@@ -50,7 +50,8 @@ namespace ServerCoreLib {
             // Update client's name
             Name = splitted[1];
             active = true;
-            ListenForCommands();
+
+            await ListenForCommandsAsync();
         }
 
         public override string ToString() {
@@ -64,7 +65,7 @@ namespace ServerCoreLib {
             await writer.FlushAsync();
         }
 
-        private async void ListenForCommands() {
+        private async Task ListenForCommandsAsync() {
             while (true) {
                 string response = await reader.ReadLineAsync();
 
@@ -73,6 +74,7 @@ namespace ServerCoreLib {
                     Dispose();
                     return;
                 }
+
                 // Wait for a while
                 Thread.Sleep(1000);
             }

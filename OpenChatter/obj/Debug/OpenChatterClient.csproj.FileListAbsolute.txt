@@ -4,3 +4,6 @@ c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\OpenChatter\bin
 c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\OpenChatter\obj\Debug\OpenChatterClient.csprojResolveAssemblyReference.cache
 c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\OpenChatter\obj\Debug\OpenChatter.exe
 c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\OpenChatter\obj\Debug\OpenChatter.pdb
+D:\.Net Projects\OpenChatter\OpenChatter\bin\Debug\OpenChatter.exe.config
+D:\.Net Projects\OpenChatter\OpenChatter\obj\Debug\OpenChatter.exe
+D:\.Net Projects\OpenChatter\OpenChatter\obj\Debug\OpenChatter.pdb
