@@ -72,6 +72,11 @@ namespace ServerCoreLib {
                 client,
                 // OnReceivedCommand
                 (sender, command) => {
+                    if (command == null) {
+                        sender.Deactivate();
+                        return;
+                    }
+
                     if (command.Type == ClientCommandType.SendName) {
                         sender.Activate(command.Content);
                     }

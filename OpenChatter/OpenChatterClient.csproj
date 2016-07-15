@@ -7,8 +7,8 @@
     <ProjectGuid>{BEC9FE72-319F-40D8-A0B4-1BE78E4C15BA}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OpenChatter</RootNamespace>
-    <AssemblyName>OpenChatter</AssemblyName>
+    <RootNamespace>OpenChatterClient</RootNamespace>
+    <AssemblyName>OpenChatterClient</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,13 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChatHistoryTracker.cs" />
-    <Compile Include="ChatMessage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClientCoreLib\ClientCoreLib.csproj">
+      <Project>{62f5c2bf-616e-485d-bc95-2e75cf2c0375}</Project>
+      <Name>ClientCoreLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

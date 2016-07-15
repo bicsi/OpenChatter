@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerCoreLib", "ServerCore
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandHandler", "EventHandler\CommandHandler.csproj", "{B14BABC7-5CE8-4DF8-96AD-6BE42B66568C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientCoreLib", "ClientCoreLib\ClientCoreLib.csproj", "{62F5C2BF-616E-485D-BC95-2E75CF2C0375}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B14BABC7-5CE8-4DF8-96AD-6BE42B66568C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B14BABC7-5CE8-4DF8-96AD-6BE42B66568C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B14BABC7-5CE8-4DF8-96AD-6BE42B66568C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62F5C2BF-616E-485D-BC95-2E75CF2C0375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62F5C2BF-616E-485D-BC95-2E75CF2C0375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62F5C2BF-616E-485D-BC95-2E75CF2C0375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62F5C2BF-616E-485D-BC95-2E75CF2C0375}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

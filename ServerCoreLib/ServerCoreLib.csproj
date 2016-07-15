@@ -43,7 +43,6 @@
     <Compile Include="ChatServerCore.cs" />
     <Compile Include="ClientListTracker.cs" />
     <Compile Include="CommandExecuter.cs" />
-    <Compile Include="CommandParser.cs" />
     <Compile Include="ConnectionListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerConnection.cs" />

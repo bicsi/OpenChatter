@@ -79,16 +79,23 @@ namespace ServerCoreLib {
         /// Listens asynchronously for commands
         /// </summary>
         private async void ListenForCommandsAsync() {
-            while (connected) {
+            while (client.Connected && connected) {
                 //Fetch a command
-                string response = await reader.ReadLineAsync();
-                ChatCommand command = parser.ParseClientCommand(response);
+                try {
+                    string response = await reader.ReadLineAsync();
 
-                // Invoke the event
-                OnReceivedCommand(this, command);
+                    ChatCommand command = parser.ParseClientCommand(response);
 
-                // Wait for a while
-                Thread.Sleep(100);
+                    // Invoke the event
+                    OnReceivedCommand(this, command);
+
+                    // Wait for a while
+                    Thread.Sleep(100);
+                }
+                catch (IOException e) {
+                    Debug.WriteLine(e);
+                    Deactivate();
+                }
             }
         }
 

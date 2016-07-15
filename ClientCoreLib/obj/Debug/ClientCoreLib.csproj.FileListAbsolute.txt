@@ -1,0 +1,7 @@
+D:\.Net Projects\OpenChatter\ClientCoreLib\bin\Debug\ClientCoreLib.dll
+D:\.Net Projects\OpenChatter\ClientCoreLib\bin\Debug\ClientCoreLib.pdb
+D:\.Net Projects\OpenChatter\ClientCoreLib\bin\Debug\CommandHandler.dll
+D:\.Net Projects\OpenChatter\ClientCoreLib\bin\Debug\CommandHandler.pdb
+D:\.Net Projects\OpenChatter\ClientCoreLib\obj\Debug\ClientCoreLib.csprojResolveAssemblyReference.cache
+D:\.Net Projects\OpenChatter\ClientCoreLib\obj\Debug\ClientCoreLib.dll
+D:\.Net Projects\OpenChatter\ClientCoreLib\obj\Debug\ClientCoreLib.pdb
