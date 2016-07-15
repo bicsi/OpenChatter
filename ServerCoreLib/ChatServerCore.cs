@@ -89,11 +89,6 @@ namespace ServerCoreLib {
 
             // Start the ServerConnection object
             conn.Start();
-
-            // Send welcome message
-            executer.AddCommand(new ChatCommand {
-                Type = ServerCommandType.SendWelcomeMessage
-            });
         }
         
         

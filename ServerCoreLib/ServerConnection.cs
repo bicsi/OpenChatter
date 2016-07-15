@@ -98,6 +98,8 @@ namespace ServerCoreLib {
         /// </summary>
         /// <param name="name"></param>
         public void Activate(string name) {
+            if (active)
+                OnDeactivate(this);
             active = true;
             Name = name;
             OnActivated(this);
