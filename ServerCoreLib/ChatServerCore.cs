@@ -51,6 +51,7 @@ namespace ServerCoreLib {
             listener.AcceptConnectionsAsync();
 
             Console.WriteLine($"Started listening at port: {Port}");
+            Console.WriteLine();
 
             // Start the CommandExecuter
             executer.Start();
@@ -59,8 +60,8 @@ namespace ServerCoreLib {
         }
 
         /// <summary>
-        /// Some client has connected
-        /// Ask for their name
+        /// Some client has connected;
+        /// ask for their name and start the connection
         /// </summary>
         /// <param name="client">the TcpClient returned by the listener</param>
         private void OnClientConnected(TcpClient client) {

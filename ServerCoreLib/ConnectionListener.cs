@@ -22,6 +22,9 @@ namespace ServerCoreLib {
             OnClientConnected = onClientConnected;
         }
 
+        /// <summary>
+        /// Initiates the listener and starts listening
+        /// </summary>
         public void Start() {
             // Initialize a listener
             listener = new TcpListener(IP, Port);
@@ -30,7 +33,11 @@ namespace ServerCoreLib {
             listener.Start();
         }
 
-        public async Task AcceptConnectionsAsync() {
+
+        /// <summary>
+        /// Loops infinitely and accepts all incoming connections
+        /// </summary>
+        public async void AcceptConnectionsAsync() {
             while (true) {
                 // Got connection
                 var client = await listener.AcceptTcpClientAsync();

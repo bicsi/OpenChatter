@@ -15,7 +15,7 @@ namespace ServerCoreLib {
         /// <summary>
         /// Constructor for the CommandExecuter class
         /// </summary>
-        /// <param name="tracker"> A ClientListTracker object </param>
+        /// <param name="tracker"> The object that maps the names to connections </param>
         public CommandExecuter(ClientListTracker tracker) {
             this.tracker = tracker;
             commandsQueue = new BlockingCollection<ChatCommand>();
@@ -27,7 +27,6 @@ namespace ServerCoreLib {
         /// </summary>
         /// <param name="command"></param>
         public void AddCommand(ChatCommand command) {
-            // Add command to queue
             commandsQueue.Add(command);
         }
 
@@ -58,6 +57,9 @@ namespace ServerCoreLib {
             
         }
 
+        /// <summary>
+        /// Start the loop that executes the commands in hte commandsQueue
+        /// </summary>
         public void Start() {
             // Starts listening for commands
             foreach (var command in commandsQueue.GetConsumingEnumerable()) {
