@@ -109,6 +109,12 @@ namespace ServerCoreLib {
                 OnDeactivate(this);
             active = true;
             Name = name;
+
+            ChatCommand command = new ChatCommand { Type = ServerCommandType.SendConnectACK };
+
+            writer.WriteLine(parser.StringifyCommand(command, Name));
+            writer.Flush();
+
             OnActivated(this);
         }
         
