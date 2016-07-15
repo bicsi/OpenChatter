@@ -148,6 +148,9 @@ namespace ServerCoreLib {
             await writer.FlushAsync();
         }
 
+        /// <summary>
+        /// Send the welcome message to client
+        /// </summary>
         public async void ReceiveWelcomeMessageAsync() {
             string serialized = parser.StringifyWelcome();
             await writer.WriteLineAsync(serialized);
