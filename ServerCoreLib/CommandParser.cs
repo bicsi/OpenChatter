@@ -1,3 +1,4 @@
+using System.Linq;
 using CommandHandler;
 
 namespace ServerCoreLib {
@@ -8,7 +9,7 @@ namespace ServerCoreLib {
         /// </summary>
         /// <param name="response"></param>
         /// <returns></returns>
-        public static ChatCommand ParseClientCommand(string response) {
+        public ChatCommand ParseClientCommand(string response) {
 
             // Split the command
             string[] args = response.Split(' ');
@@ -28,11 +29,22 @@ namespace ServerCoreLib {
 
                 case ClientCommandType.SendMessage:
                     command.Recipient = args[1];
-                    command.Content = args[2];
+                    command.Content = string.Join(" ", args.Skip(2).ToArray());
                     break;
             }
 
             return command;
+        }
+
+        /// <summary>
+        /// Transforms message into string
+        /// </summary>
+        public string StringifyMessage(string senderName, string content) {
+            return $"{ServerCommandType.ForwardMessage} {senderName} {content}";
+        }
+
+        public string StringifyWelcome() {
+            return ServerCommandType.SendWelcomeMessage + " " + "This is a sample welcome message. This should be taken away from here.";
         }
     }
 }

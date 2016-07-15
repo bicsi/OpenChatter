@@ -67,8 +67,10 @@ namespace ServerCoreLib {
         private void OnClientConnected(TcpClient client) {
 
             // Build a ServerConnection object
-            ServerConnection conn = new ServerConnection(
+            ServerConnection conn = new ServerConnection (
+                // TcpClient
                 client,
+                // OnReceivedCommand
                 (sender, command) => {
                     if (command.Type == ClientCommandType.SendName) {
                         sender.Activate(command.Content);
@@ -79,11 +81,19 @@ namespace ServerCoreLib {
                     }
                     
                 },
-                clientList.AddConnection
+                // OnActivated
+                clientList.AddConnection,
+                // OnDisposed
+                clientList.RemoveConnection
             );
 
             // Start the ServerConnection object
             conn.Start();
+
+            // Send welcome message
+            executer.AddCommand(new ChatCommand {
+                Type = ServerCommandType.SendWelcomeMessage
+            });
         }
         
         

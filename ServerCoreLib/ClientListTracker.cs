@@ -29,6 +29,7 @@ namespace ServerCoreLib {
             clientDictionary[name] = conn;
 
             Console.WriteLine($"Added connection {conn}.");
+            Console.WriteLine($"There are {clientDictionary.Count} connections at the moment.");
         }
 
         /// <summary>
@@ -42,6 +43,8 @@ namespace ServerCoreLib {
                 clientDictionary.TryRemove(name, out conn);
 
             Console.WriteLine($"Removed connection {conn}");
+            Console.WriteLine($"There are {clientDictionary.Count} connections at the moment.");
+
         }
 
         /// <summary>

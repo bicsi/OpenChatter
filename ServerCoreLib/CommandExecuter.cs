@@ -49,14 +49,36 @@ namespace ServerCoreLib {
                     break;
 
                 case ClientCommandType.SendDisconnect:
-                    sender = tracker.GetClientByName(command.Sender);
-                    sender.Dispose();
+                    try {
+                        sender = tracker.GetClientByName(command.Sender);
+                        sender.Deactivate();
+                    }
+                    catch (Exception e) {
+                        Console.WriteLine(e);
+                    }
+                    
+                    break;
+
+                case ClientCommandType.SendMessage:
+
+                    try {
+                        recipient = tracker.GetClientByName(command.Recipient);
+                        recipient.ReceiveMessageAsync(command.Sender, command.Content);
+                    }
+                    catch (KeyNotFoundException e) {
+                        Console.WriteLine("One message was ignored. No user has that name.");
+                    }
+
+                    break;
+
+                default:
+                    Console.WriteLine($"One command was ignored (unrecognized command: {command.Type}).");
                     break;
 
             }
-            
         }
 
+    
         /// <summary>
         /// Start the loop that executes the commands in hte commandsQueue
         /// </summary>

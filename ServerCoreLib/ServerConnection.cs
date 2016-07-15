@@ -25,6 +25,7 @@ namespace ServerCoreLib {
 
         private Action<ServerConnection, ChatCommand> OnReceivedCommand;
         private Action<ServerConnection> OnActivated;
+        private Action<ServerConnection> OnDeactivate;
 
         private NetworkStream stream;
         private StreamWriter writer;
@@ -32,19 +33,27 @@ namespace ServerCoreLib {
         private CommandParser parser;
 
         /// <summary>
-        /// The constructor for the ServerConnection class
+        /// /// The constructor for the ServerConnection class,
+        /// along with the events needed
         /// </summary>
         /// <param name="client"> The TcpClient of the connection </param>
+        /// <param name="onReceivedCommand"> Event that gets invoked when received a command from connection </param>
+        /// <param name="onActivated"> Event that gets invoked when connection has a name and is active </param>
+        /// <param name="onDeactivate"> Event that gets invoked when connection is turned off </param>
         public ServerConnection (
             TcpClient client, 
             Action<ServerConnection, ChatCommand> onReceivedCommand,
-            Action<ServerConnection> onActivated
+            Action<ServerConnection> onActivated,
+            Action<ServerConnection> onDeactivate
             ) {
             // Instantiate the client and the streams
             this.client = client;
             Name = "anonymous";
             OnReceivedCommand = onReceivedCommand;
             OnActivated = onActivated;
+            OnDeactivate = onDeactivate;
+
+            parser = new CommandParser();
         }
 
 
@@ -59,6 +68,9 @@ namespace ServerCoreLib {
             reader = new StreamReader(stream);
             this.connected = true;
 
+            // Send welcome message
+            ReceiveWelcomeMessageAsync();
+
             ListenForCommandsAsync();
         }
         
@@ -70,7 +82,7 @@ namespace ServerCoreLib {
             while (connected) {
                 //Fetch a command
                 string response = await reader.ReadLineAsync();
-                ChatCommand command = CommandParser.ParseClientCommand(response);
+                ChatCommand command = parser.ParseClientCommand(response);
 
                 // Invoke the event
                 OnReceivedCommand(this, command);
@@ -102,19 +114,42 @@ namespace ServerCoreLib {
         }
 
         /// <summary>
+        /// Deactivates the object (and disposes it)
+        /// </summary>
+        public void Deactivate() {
+            OnDeactivate(this);
+
+            active = false;
+            Dispose();
+        }
+
+        /// <summary>
         /// Destroys the object and closes the streams
         /// </summary>
         public void Dispose() {
-            active = false;
             connected = false;
 
             writer.Close();
             reader.Close();
             client.Close();
-
-            //TODO: OnDispose();
         }
 
-        
+        /// <summary>
+        /// The method gets called when the connection has received a message
+        /// from another client (forwarded through the core)
+        /// </summary>
+        /// <param name="senderName"> The name of the sender </param>
+        /// <param name="content"> The content of the message </param>
+        public async void ReceiveMessageAsync(string senderName, string content) {
+            string serialized = parser.StringifyMessage(senderName, content);
+            await writer.WriteLineAsync(serialized);
+            await writer.FlushAsync();
+        }
+
+        public async void ReceiveWelcomeMessageAsync() {
+            string serialized = parser.StringifyWelcome();
+            await writer.WriteLineAsync(serialized);
+            await writer.FlushAsync();
+        }
     }
 }
