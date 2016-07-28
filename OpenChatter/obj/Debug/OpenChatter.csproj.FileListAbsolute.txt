@@ -1,1 +1,0 @@
-c:\users\bicsi\documents\visual studio 2015\Projects\OpenChatter\OpenChatter\bin\Debug\OpenChatter.exe.config

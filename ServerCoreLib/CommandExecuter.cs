@@ -8,8 +8,12 @@ using System.Threading.Tasks;
 using CommandHandler;
 
 namespace ServerCoreLib {
+    public class ServerChatCommand {
+        public ChatCommandBase Command { get; set; }
+        public string SenderName { get; set; }
+    }
     internal class CommandExecuter {
-        private BlockingCollection<ChatCommand> commandsQueue;
+        private BlockingCollection<ServerChatCommand> commandsQueue;
         private ClientListTracker tracker;
 
         /// <summary>
@@ -18,7 +22,7 @@ namespace ServerCoreLib {
         /// <param name="tracker"> The object that maps the names to connections </param>
         public CommandExecuter(ClientListTracker tracker) {
             this.tracker = tracker;
-            commandsQueue = new BlockingCollection<ChatCommand>();
+            commandsQueue = new BlockingCollection<ServerChatCommand>();
         }
 
 
@@ -26,7 +30,7 @@ namespace ServerCoreLib {
         /// Adds a command to the processing queue
         /// </summary>
         /// <param name="command"></param>
-        public void AddCommand(ChatCommand command) {
+        public void AddCommand(ServerChatCommand command) {
             commandsQueue.Add(command);
         }
 
@@ -34,48 +38,31 @@ namespace ServerCoreLib {
         /// Executes a command
         /// </summary>
         /// <param name="command"> The command to be executed </param>
-        private void ExecuteCommand(ChatCommand command) {
-
-            string serialized;
+        private void ExecuteCommand(ServerChatCommand command) {
+            
             ServerConnection sender, recipient;
 
-            switch (command.Type) {
-
-                // Client command types
-
-                case ClientCommandType.SendName:
-                    sender = tracker.GetClientByName(command.Sender);
-                    sender.Activate(command.Content);
-                    break;
-
-                case ClientCommandType.SendDisconnect:
-                    try {
-                        sender = tracker.GetClientByName(command.Sender);
-                        sender.Deactivate();
-                    }
-                    catch (Exception e) {
-                        Console.WriteLine(e);
-                    }
-                    
-                    break;
-
-                case ClientCommandType.SendMessage:
-
-                    try {
-                        recipient = tracker.GetClientByName(command.Recipient);
-                        recipient.ReceiveMessageAsync(command.Sender, command.Content);
-                    }
-                    catch (KeyNotFoundException e) {
-                        Console.WriteLine("One message was ignored. No user has that name.");
-                    }
-
-                    break;
-
-                default:
-                    Console.WriteLine($"One command was ignored (unrecognized command: {command.Type}).");
-                    break;
-
+            if (command.Command is ClientLogin){
+                sender = tracker.GetClientByName(command.SenderName);
+                //sender.Activate(((ClientLogin)command.Command));
             }
+            else if (command.Command is SendMessageCommand)
+            {
+                var cmd = ((SendMessageCommand)command.Command);
+                try {
+                    if (cmd.Sender != command.SenderName) {
+                        Console.WriteLine($"Warning {command.SenderName} is cheating - saying his name is {cmd.Sender}.");
+                    }
+                    cmd.Sender = command.SenderName;
+                    recipient = tracker.GetClientByName(cmd.Destination);
+                    recipient.ReceiveMessageAsync(command.SenderName, cmd.Body);
+                }
+                catch (KeyNotFoundException e) {
+                    Console.WriteLine($"One message was ignored. No user has that name ({cmd.Destination}).");
+                }
+            }
+            else
+                throw new Exception($"Unrecognized command: {command.Command.Code}.");
         }
 
     

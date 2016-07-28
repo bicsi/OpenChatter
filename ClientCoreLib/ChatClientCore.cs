@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ClientCoreLib {
     public class ChatClientCore : IDisposable {
@@ -13,6 +12,7 @@ namespace ClientCoreLib {
         /// </summary>
 
         private Connection connection;
+        private CommandLineListener listener;
 
         public IPAddress IP { get; private set; }
         public int Port { get; private set; }
@@ -23,7 +23,12 @@ namespace ClientCoreLib {
             Port = port;
             Stopped = false;
 
-            connection = new Connection();
+            listener = new CommandLineListener(OnUserTypedCommand);
+            connection = new Connection(listener.Start);
+        }
+
+        private void OnUserTypedCommand(ChatCommand obj) {
+            connection.SendCommand(obj);
         }
 
         public void Start() {

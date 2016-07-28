@@ -30,6 +30,7 @@ namespace ClientCoreLib {
         /// Executes the currently extracted command
         /// </summary>
         private void ExecuteCommand(ChatCommand command) {
+
             switch (command.Type) {
                 case ServerCommandType.SendWelcomeMessage:
                     connection.DisplayWelcome(command.Content);
@@ -40,7 +41,7 @@ namespace ClientCoreLib {
                     break;
 
                 case ServerCommandType.SendConnectACK:
-                    connection.DisplayConnected();
+                    connection.Activate();
                     break;
 
                 default:

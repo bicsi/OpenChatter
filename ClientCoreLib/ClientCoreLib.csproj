@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="ChatClientCore.cs" />
     <Compile Include="CommandExecuter.cs" />
+    <Compile Include="CommandLineListener.cs" />
     <Compile Include="Connection.cs" />
+    <Compile Include="IChatClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

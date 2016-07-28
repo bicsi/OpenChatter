@@ -1,0 +1,5 @@
+D:\.Net Projects\OpenChatter\HelperSnippets\obj\Debug\HelperSnippets.csprojResolveAssemblyReference.cache
+D:\.Net Projects\OpenChatter\HelperSnippets\obj\Debug\MainWindow.g.cs
+D:\.Net Projects\OpenChatter\HelperSnippets\obj\Debug\App.g.cs
+D:\.Net Projects\OpenChatter\HelperSnippets\obj\Debug\HelperSnippets_MarkupCompile.cache
+D:\.Net Projects\OpenChatter\HelperSnippets\obj\Debug\HelperSnippets_MarkupCompile.lref

@@ -1,0 +1,20 @@
+﻿ChatClientUI
+
+
+winexe
+C#
+.cs
+D:\.Net Projects\OpenChatter\ChatClientUI\obj\Debug\
+ChatClientUI
+none
+false
+DEBUG;TRACE
+D:\.Net Projects\OpenChatter\ChatClientUI\App.xaml
+4400185072
+
+18-862509977
+16-1382933646
+MainWindow.xaml;Views\DashboardView.xaml;Views\UserDataView.xaml;Views\UserLoginView.xaml;
+
+False
+

@@ -23,7 +23,7 @@ namespace ServerCoreLib {
         private bool active = false;
         private bool connected = false;
 
-        private Action<ServerConnection, ChatCommand> OnReceivedCommand;
+        private Action<ServerConnection, ChatCommandBase> OnReceivedCommand;
         private Action<ServerConnection> OnActivated;
         private Action<ServerConnection> OnDeactivate;
 
@@ -42,7 +42,7 @@ namespace ServerCoreLib {
         /// <param name="onDeactivate"> Event that gets invoked when connection is turned off </param>
         public ServerConnection (
             TcpClient client, 
-            Action<ServerConnection, ChatCommand> onReceivedCommand,
+            Action<ServerConnection, ChatCommandBase> onReceivedCommand,
             Action<ServerConnection> onActivated,
             Action<ServerConnection> onDeactivate
             ) {
@@ -82,9 +82,7 @@ namespace ServerCoreLib {
             while (client.Connected && connected) {
                 //Fetch a command
                 try {
-                    string response = await reader.ReadLineAsync();
-
-                    ChatCommand command = parser.ParseClientCommand(response);
+                    var command = await parser.ReadNext(reader);
 
                     // Invoke the event
                     OnReceivedCommand(this, command);
@@ -110,9 +108,12 @@ namespace ServerCoreLib {
             active = true;
             Name = name;
 
-            ChatCommand command = new ChatCommand { Type = ServerCommandType.SendConnectACK };
+            ChatCommand command = new ChatCommand {
+                Type = ServerCommandType.SendConnectACK,
+                Sender = name
+            };
 
-            writer.WriteLine(parser.StringifyCommand(command, Name));
+            writer.WriteLine(parser.StringifyCommand(command));
             writer.Flush();
 
             OnActivated(this);

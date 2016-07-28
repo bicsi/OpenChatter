@@ -77,8 +77,8 @@ namespace ServerCoreLib {
                         return;
                     }
 
-                    if (command.Type == ClientCommandType.SendName) {
-                        sender.Activate(command.Content);
+                    if (command is ClientLogin) {
+                        sender.Activate(((ClientLogin)command).Name);
                     }
                     else {
                         command.Sender = sender.Name;

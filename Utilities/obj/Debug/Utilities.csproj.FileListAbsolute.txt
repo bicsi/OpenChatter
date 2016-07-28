@@ -1,0 +1,5 @@
+D:\.Net Projects\OpenChatter\Utilities\bin\Debug\Utilities.dll
+D:\.Net Projects\OpenChatter\Utilities\bin\Debug\Utilities.pdb
+D:\.Net Projects\OpenChatter\Utilities\obj\Debug\Utilities.csprojResolveAssemblyReference.cache
+D:\.Net Projects\OpenChatter\Utilities\obj\Debug\Utilities.dll
+D:\.Net Projects\OpenChatter\Utilities\obj\Debug\Utilities.pdb

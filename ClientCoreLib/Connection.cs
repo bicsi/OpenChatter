@@ -15,13 +15,15 @@ namespace ClientCoreLib {
 
         private CommandParser parser;
         private CommandExecuter executer;
+        private Action OnActivated;
 
         public string Name { get; private set; }
 
-        public Connection() {
+        public Connection(Action onActivated) {
             client = new TcpClient();
             parser = new CommandParser();
             executer = new CommandExecuter(this);
+            OnActivated = onActivated;
         }
 
         /// <summary>
@@ -58,6 +60,13 @@ namespace ClientCoreLib {
             }
         }
 
+        public void Activate() {
+            Console.WriteLine("You are now active on the server with the name: " + Name);
+            Console.WriteLine();
+            Console.WriteLine();
+
+            OnActivated();
+        }
 
         public void DisplayWelcome(string content) {
             Console.WriteLine(content);
@@ -68,35 +77,22 @@ namespace ClientCoreLib {
             Console.Write("Please input your name: ");
             string name = Console.ReadLine();
 
-            // Create command for name
-            ChatCommand command = new ChatCommand {
-                Type = ClientCommandType.SendName,
-                Content = name
-            };
 
             Name = name;
+            // Create command for name
+            SendCommand(new ChatCommand { Type = ClientCommandType.SendName });
 
-            writer.WriteLine(parser.StringifyCommand(command, name));
-            writer.Flush();
         }
 
         public void DisplayMessage(string sender, string content) {
             Console.WriteLine($"{sender} : {content}");
         }
 
-        public void DisplayConnected() {
-            Console.WriteLine("You have connected to the server");
-            Console.WriteLine();
-            Console.WriteLine();
-        }
-
         public void Stop() {
 
             // Send stop signal
-            ChatCommand command = new ChatCommand {Type = ClientCommandType.SendDisconnect};
-            writer.WriteLine(parser.StringifyCommand(command, Name));
-            writer.Flush();
-            
+            SendCommand(new ChatCommand { Type = ClientCommandType.SendDisconnect });
+
             executer.Stop();
         }
 
@@ -106,5 +102,12 @@ namespace ClientCoreLib {
             writer.Close();
             stream.Close();
         }
+
+        public void SendCommand(ChatCommand chatCommand) {
+            chatCommand.Sender = Name;
+            writer.WriteLine(parser.StringifyCommand(chatCommand));
+            writer.Flush();
+        }
     }
+
 }
