@@ -1,47 +1,54 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
+using System.Net.Sockets;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
+using CommandHandler;
+using CommandHandler.ChatCommands;
+using ConnectionHandler;
+using Utilities;
 
 namespace ClientCoreLib {
-    public class ChatClientCore : IDisposable {
+    public interface IChatClient {
+        Task StartAsync(IPAddress ip, int port);
+        Task LoginAsync(string name);
+        Task LogoutAsync();
+    }
+
+    public class ChatClientCore : IChatClient {
+
+        private TcpCommunicator communicator;
+        public static ChatClientCore Instance = new ChatClientCore();
+
+        private ChatClientCore() {
+            communicator = new TcpCommunicator();
+            communicator.OnCommandReceived += HandleCommand;
+        }
+
+        public async Task LoginAsync(string name) {
+            await communicator.SendCommandAsync(new ClientLoginCommand {
+                Name = name
+            });
+        }
+
+        public async Task LogoutAsync() {
+            await communicator.SendCommandAsync(new ClientLogoffCommand());
+        }
 
         /// <summary>
-        /// Starts the whole process
+        /// Handles a server command
         /// </summary>
-
-        private Connection connection;
-        private CommandLineListener listener;
-
-        public IPAddress IP { get; private set; }
-        public int Port { get; private set; }
-        public bool Stopped { get; set; }
-
-        public ChatClientCore(IPAddress ipAddress, int port) {
-            IP = ipAddress;
-            Port = port;
-            Stopped = false;
-
-            listener = new CommandLineListener(OnUserTypedCommand);
-            connection = new Connection(listener.Start);
+        private void HandleCommand(ChatCommandBase comm) {
+            if (comm is SendMessageCommand) {
+                
+            }
         }
+        
 
-        private void OnUserTypedCommand(ChatCommand obj) {
-            connection.SendCommand(obj);
-        }
-
-        public void Start() {
-            connection.Start(IP, Port);
-        }
-
-        public void Stop() {
-            connection.Stop();
-            Stopped = true;
-        }
-
-        public void Dispose() {
-            Stop();
+        public async Task StartAsync(IPAddress ip, int port) {
+            DIContainer.AddInstance((IChatClient) Instance);
+            await communicator.ConnectAsync(ip, port);
+            communicator.StartListening();
         }
     }
 }

@@ -8,5 +8,6 @@ namespace ChatClientUI.ViewModels {
     public interface INavigationManager {
         void Start();
         ViewModelBase InitializeDashboard();
+        ViewModelBase InitializeLoginScreen();
     }
 }

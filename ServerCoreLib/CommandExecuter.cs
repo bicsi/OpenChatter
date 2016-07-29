@@ -57,7 +57,7 @@ namespace ServerCoreLib {
                     recipient = tracker.GetClientByName(cmd.Destination);
                     recipient.ReceiveMessageAsync(command.SenderName, cmd.Body);
                 }
-                catch (KeyNotFoundException e) {
+                catch (KeyNotFoundException) {
                     Console.WriteLine($"One message was ignored. No user has that name ({cmd.Destination}).");
                 }
             }

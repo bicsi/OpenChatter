@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AppData.Models;
+using ClientCoreLib;
 using Utilities;
 
 namespace ChatClientUI.ViewModels {
@@ -35,12 +36,13 @@ namespace ChatClientUI.ViewModels {
         }
 
         public RelayCommand Login { get; private set; }
-        private void OnLogin() {
+        private async void OnLogin() {
 
             // Save settings
             UserSettings.Default.UserName = CurrentUser.Name;
             UserSettings.Default.Save();
-            
+
+            await DIContainer.GetInstance<IChatClient>().LoginAsync(CurrentUser.Name);
             Trace.WriteLine($"{CurrentUser.Name} logged in!");
 
             // Set the global current user

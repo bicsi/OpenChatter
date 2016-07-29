@@ -129,16 +129,18 @@ namespace ServerCoreLib {
         /// Deactivates the object (and disposes it)
         /// </summary>
         public void Deactivate() {
+            if (!active) return;
             OnDeactivate(this);
 
+            Name = null;
             active = false;
-            Dispose();
         }
 
         /// <summary>
         /// Destroys the object and closes the streams
         /// </summary>
         public void Dispose() {
+            Deactivate();
             connected = false;
 
             writer.Close();

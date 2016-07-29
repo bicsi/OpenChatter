@@ -10,6 +10,7 @@ namespace CommandHandler.ChatCommands {
         public override string Code => "users";
         public override Type ParserType => typeof (ActiveUsersParser);
    }
+    
     internal class ActiveUsersParser : CommandParser<ActiveUsersCommand> {
         
         public override async Task WriteAsync(ActiveUsersCommand command, StreamWriter writer) {

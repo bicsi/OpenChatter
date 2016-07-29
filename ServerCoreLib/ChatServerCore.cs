@@ -75,12 +75,17 @@ namespace ServerCoreLib {
                 // OnReceivedCommand
                 (sender, command) => {
                     if (command == null) {
-                        sender.Deactivate();
+                        sender.Dispose();
                         return;
                     }
 
                     if(command is NopCommand) {
                         Console.WriteLine("Command ignored.");
+                        return;
+                    }
+
+                    if (command is ClientLogoffCommand) {
+                        sender.Deactivate();
                         return;
                     }
 

@@ -9,7 +9,7 @@ using ChatClientUI.Views;
 using Utilities;
 
 namespace ChatClientUI {
-    public class NavigationManager : INavigationManager {
+    internal class NavigationManager : INavigationManager {
         public static NavigationManager Instance = new NavigationManager();
         private MainWindow window;
 
@@ -17,12 +17,21 @@ namespace ChatClientUI {
         private NavigationManager() {}
         
         public void Start() {
-            // Initialize the field with the current window
-            window = (MainWindow) Application.Current.MainWindow;
-            // Set the content to the login view, and also create its VM
-            window.mainControl.Content = new UserLoginView();
             // Insert the instance in the DIContainer
             DIContainer.AddInstance<INavigationManager>(Instance);
+            // Initialize the login screen
+            InitializeLoginScreen();
+        }
+
+        public ViewModelBase InitializeLoginScreen() {
+            // Initialize a new login view
+            var view = new UserLoginView();
+            // Initialize the field with the current window
+            window = (MainWindow)Application.Current.MainWindow;
+            // Set the content to the login view, and also create its VM
+            window.mainControl.Content = view;
+
+            return (ViewModelBase) view.DataContext;
         }
 
         public ViewModelBase InitializeDashboard() {

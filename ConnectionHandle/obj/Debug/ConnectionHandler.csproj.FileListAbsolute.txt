@@ -1,0 +1,7 @@
+D:\.Net Projects\OpenChatter\ConnectionHandle\bin\Debug\ConnectionHandler.dll
+D:\.Net Projects\OpenChatter\ConnectionHandle\bin\Debug\ConnectionHandler.pdb
+D:\.Net Projects\OpenChatter\ConnectionHandle\bin\Debug\CommandHandler.dll
+D:\.Net Projects\OpenChatter\ConnectionHandle\bin\Debug\CommandHandler.pdb
+D:\.Net Projects\OpenChatter\ConnectionHandle\obj\Debug\ConnectionHandler.csprojResolveAssemblyReference.cache
+D:\.Net Projects\OpenChatter\ConnectionHandle\obj\Debug\ConnectionHandler.dll
+D:\.Net Projects\OpenChatter\ConnectionHandle\obj\Debug\ConnectionHandler.pdb

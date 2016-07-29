@@ -43,6 +43,7 @@
     <Compile Include="ChatCommands\ActiveUsersCommand.cs" />
     <Compile Include="ChatCommandBase.cs" />
     <Compile Include="ChatCommands\ClientLoginCommand.cs" />
+    <Compile Include="ChatCommands\ClientLogoffCommand.cs" />
     <Compile Include="ChatCommands\LoginSuccessCommand.cs" />
     <Compile Include="ChatCommands\NopCommand.cs" />
     <Compile Include="ChatCommands\WelcomeCommand.cs" />

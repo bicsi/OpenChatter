@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Windows;
 using ClientCoreLib;
+using Utilities;
 
 namespace ChatClientUI {
     /// <summary>
@@ -17,11 +18,9 @@ namespace ChatClientUI {
             NavigationManager.Instance.Start();
 
             IPAddress ipAddr = IPAddress.Parse("127.0.0.1");
-            int port = int.Parse("8888");
+            int port = int.Parse("3333");
 
-            ChatClientCore client = new ChatClientCore(ipAddr, port);
-
-            client.Start();
+            ChatClientCore.Instance.StartAsync(ipAddr, port);
         }
     }
 }

@@ -5,15 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:ChatClientUI.ViewModels"
              xmlns:local="clr-namespace:ChatClientUI.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    
-    
-    <Grid Background="Red">
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
-            <TextBlock x:Name="curLogInAsTB" TextWrapping="Wrap" Text="Currently logged in as: "/>   
-            <TextBlock x:Name="nameTB" TextWrapping="Wrap" Text="{Binding CurrentUser.Name}"/>
+             mc:Ignorable="d" d:DesignWidth="300" Height="29">
 
-        </StackPanel>
-    </Grid>
+
+    <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
+        <TextBlock x:Name="curLogInAsTB" TextWrapping="Wrap" Text="Currently logged in as: "/>
+        <TextBlock x:Name="nameTB" TextWrapping="Wrap" Text="{Binding CurrentUser.Name}"/>
+        <Button Content="Log out" Command="{Binding Logout}"/>
+
+    </StackPanel>
 </UserControl>

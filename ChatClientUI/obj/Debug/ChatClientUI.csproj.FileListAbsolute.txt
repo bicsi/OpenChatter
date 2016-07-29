@@ -27,3 +27,7 @@ D:\.Net Projects\OpenChatter\ChatClientUI\bin\Debug\ClientCoreLib.dll
 D:\.Net Projects\OpenChatter\ChatClientUI\bin\Debug\CommandHandler.dll
 D:\.Net Projects\OpenChatter\ChatClientUI\bin\Debug\ClientCoreLib.pdb
 D:\.Net Projects\OpenChatter\ChatClientUI\bin\Debug\CommandHandler.pdb
+D:\.Net Projects\OpenChatter\ChatClientUI\bin\Debug\ConnectionHandler.dll
+D:\.Net Projects\OpenChatter\ChatClientUI\bin\Debug\ConnectionHandler.pdb
+D:\.Net Projects\OpenChatter\ChatClientUI\obj\Debug\Views\ActiveUserListView.g.cs
+D:\.Net Projects\OpenChatter\ChatClientUI\obj\Debug\Views\ActiveUserListView.baml

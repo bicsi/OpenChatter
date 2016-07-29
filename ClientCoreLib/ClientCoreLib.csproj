@@ -41,16 +41,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatClientCore.cs" />
-    <Compile Include="CommandExecuter.cs" />
-    <Compile Include="CommandLineListener.cs" />
-    <Compile Include="Connection.cs" />
-    <Compile Include="IChatClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ConnectionHandle\ConnectionHandler.csproj">
+      <Project>{fa3f5773-55bc-4410-b0de-b27c60f5ff08}</Project>
+      <Name>ConnectionHandler</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EventHandler\CommandHandler.csproj">
       <Project>{b14babc7-5ce8-4df8-96ad-6be42b66568c}</Project>
       <Name>CommandHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{23ACBFBE-A514-4C65-89C4-40C167F9FB2C}</Project>
+      <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
