@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using CommandHandler;
+using CommandHandler.ChatCommands;
 using EventHandler = System.EventHandler;
 
 
@@ -46,7 +47,7 @@ namespace ServerCoreLib {
             Action<ServerConnection> onActivated,
             Action<ServerConnection> onDeactivate
             ) {
-            // Instantiate the client and the streams
+            // Instantiate the client and the parser
             this.client = client;
             Name = "anonymous";
             OnReceivedCommand = onReceivedCommand;
@@ -66,10 +67,10 @@ namespace ServerCoreLib {
             stream = client.GetStream();
             writer = new StreamWriter(stream);
             reader = new StreamReader(stream);
-            this.connected = true;
+            connected = true;
 
             // Send welcome message
-            ReceiveWelcomeMessageAsync();
+            SendWelcomeMessageAsync();
 
             ListenForCommandsAsync();
         }
@@ -90,7 +91,7 @@ namespace ServerCoreLib {
                     // Wait for a while
                     Thread.Sleep(100);
                 }
-                catch (IOException e) {
+                catch (Exception e) when (e is ArgumentNullException || e is IOException) {
                     Debug.WriteLine(e);
                     Deactivate();
                 }
@@ -102,19 +103,14 @@ namespace ServerCoreLib {
         /// Invokes the OnActivated event
         /// </summary>
         /// <param name="name"></param>
-        public void Activate(string name) {
+        public async void Activate(string name) {
             if (active)
                 OnDeactivate(this);
             active = true;
             Name = name;
 
-            ChatCommand command = new ChatCommand {
-                Type = ServerCommandType.SendConnectACK,
-                Sender = name
-            };
-
-            writer.WriteLine(parser.StringifyCommand(command));
-            writer.Flush();
+            var command = new LoginSuccessCommand();
+            await parser.Write(command, writer);
 
             OnActivated(this);
         }
@@ -157,18 +153,20 @@ namespace ServerCoreLib {
         /// <param name="senderName"> The name of the sender </param>
         /// <param name="content"> The content of the message </param>
         public async void ReceiveMessageAsync(string senderName, string content) {
-            string serialized = parser.StringifyMessage(senderName, content);
-            await writer.WriteLineAsync(serialized);
-            await writer.FlushAsync();
+            await parser.Write(new SendMessageCommand {
+                Sender = senderName,
+                Destination = Name,
+                Body = content
+            }, writer);
         }
 
         /// <summary>
         /// Send the welcome message to client
         /// </summary>
-        public async void ReceiveWelcomeMessageAsync() {
-            string serialized = parser.StringifyWelcome();
-            await writer.WriteLineAsync(serialized);
-            await writer.FlushAsync();
+        public async void SendWelcomeMessageAsync() {
+            await parser.Write(new WelcomeCommand {
+                Body = "Welcome to our server!"
+            }, writer);
         }
     }
 }

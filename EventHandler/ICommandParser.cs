@@ -11,16 +11,16 @@ namespace CommandHandler {
         Task<ChatCommandBase> Receive(StreamReader reader);
     }
 
-    public abstract class CommandParser<T> : ICommandParserBase where T : ChatCommandBase {
+    internal abstract class CommandParser<T> : ICommandParserBase where T : ChatCommandBase {
 
-        public abstract Task Write(T command, StreamWriter writer);
+        public abstract Task WriteAsync(T command, StreamWriter writer);
         public async Task Send(ChatCommandBase command, StreamWriter writer) {
-            await Write((T) command, writer);
+            await WriteAsync((T) command, writer);
         }
         
-        public abstract Task<T> Read(StreamReader reader);
+        public abstract Task<T> ReadAsync(StreamReader reader);
         public async Task<ChatCommandBase> Receive(StreamReader reader) {
-            return await Read(reader);
+            return await ReadAsync(reader);
         }
 
     }

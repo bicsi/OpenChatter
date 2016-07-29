@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using CommandHandler;
+using CommandHandler.ChatCommands;
 
 namespace ClientCoreLib {
     public interface IChatClient {

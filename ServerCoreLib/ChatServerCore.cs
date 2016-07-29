@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using CommandHandler;
+using CommandHandler.ChatCommands;
 
 namespace ServerCoreLib {
     public class ChatServerCore {
@@ -77,14 +79,20 @@ namespace ServerCoreLib {
                         return;
                     }
 
-                    if (command is ClientLogin) {
-                        sender.Activate(((ClientLogin)command).Name);
+                    if(command is NopCommand) {
+                        Console.WriteLine("Command ignored.");
+                        return;
                     }
-                    else {
-                        command.Sender = sender.Name;
-                        executer.AddCommand(command);
+
+                    if (command is ClientLoginCommand) {
+                        sender.Activate(((ClientLoginCommand)command).Name);
+                        return;
                     }
-                    
+                     
+                    executer.AddCommand(new ServerChatCommand {
+                        SenderName = sender.Name,
+                        Command = command
+                    });
                 },
                 // OnActivated
                 clientList.AddConnection,

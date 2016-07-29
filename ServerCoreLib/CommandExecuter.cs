@@ -6,12 +6,14 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using CommandHandler;
+using CommandHandler.ChatCommands;
 
 namespace ServerCoreLib {
     public class ServerChatCommand {
         public ChatCommandBase Command { get; set; }
         public string SenderName { get; set; }
     }
+
     internal class CommandExecuter {
         private BlockingCollection<ServerChatCommand> commandsQueue;
         private ClientListTracker tracker;
@@ -41,17 +43,15 @@ namespace ServerCoreLib {
         private void ExecuteCommand(ServerChatCommand command) {
             
             ServerConnection sender, recipient;
-
-            if (command.Command is ClientLogin){
-                sender = tracker.GetClientByName(command.SenderName);
-                //sender.Activate(((ClientLogin)command.Command));
-            }
-            else if (command.Command is SendMessageCommand)
+            sender = tracker.GetClientByName(command.SenderName);
+            
+            if (command.Command is SendMessageCommand)
             {
                 var cmd = ((SendMessageCommand)command.Command);
                 try {
                     if (cmd.Sender != command.SenderName) {
-                        Console.WriteLine($"Warning {command.SenderName} is cheating - saying his name is {cmd.Sender}.");
+                        Console.WriteLine($"Warning: {sender} is cheating - saying his name is {cmd.Sender}.");
+                        Console.WriteLine("Renaming...");
                     }
                     cmd.Sender = command.SenderName;
                     recipient = tracker.GetClientByName(cmd.Destination);
