@@ -15,7 +15,7 @@
 
     <DockPanel>
         <local:UserDataView DockPanel.Dock="Top"/>
-        <local:ActiveUserListView DockPanel.Dock="Left"/>
+        <local:ActiveUserListView DockPanel.Dock="Left" Width="180"/>
         <Grid></Grid>
     </DockPanel>
 </UserControl>

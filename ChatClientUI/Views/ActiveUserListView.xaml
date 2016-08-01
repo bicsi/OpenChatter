@@ -14,6 +14,13 @@
     <UserControl.DataContext>
         <vm:ActiveUserListViewModel/>
     </UserControl.DataContext>
-    <ListView x:Name="listView" ItemsSource="{Binding UserList}" />
+    <DockPanel>
+        <Button Width="75" DockPanel.Dock="Top" HorizontalAlignment="Left" Command="{Binding Refresh}">
+            <Button.Content>
+                Refresh List
+            </Button.Content>
+        </Button>
+        <ListView x:Name="listView" ItemsSource="{Binding UserList}" />
+    </DockPanel>
 
 </UserControl>

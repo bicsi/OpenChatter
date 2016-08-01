@@ -20,6 +20,7 @@ namespace ClientCoreLib {
 
         bool LoggedIn { get; }
         string Name { get; }
+        Task RefreshAsync();
     }
 
     public class ChatClientCore : IChatClient {

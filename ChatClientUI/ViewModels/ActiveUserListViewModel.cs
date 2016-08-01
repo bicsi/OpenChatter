@@ -21,6 +21,12 @@ namespace ChatClientUI.ViewModels {
             if (IsDesignMode)
                 return;
             DIContainer.GetInstance<IChatClient>().UserListUpdated += UpdateUserList;
+            Refresh = new RelayCommand(RefreshAsync);
+        }
+
+        public RelayCommand Refresh { get; private set; }
+        public async void RefreshAsync() {
+            await DIContainer.GetInstance<IChatClient>().RefreshAsync();
         }
 
         private void UpdateUserList(List<string> obj) {

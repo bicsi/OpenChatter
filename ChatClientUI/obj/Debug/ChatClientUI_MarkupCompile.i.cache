@@ -16,5 +16,5 @@ D:\.Net Projects\OpenChatter\ChatClientUI\App.xaml
 16-1382933646
 MainWindow.xaml;Views\ActiveUserListView.xaml;Views\DashboardView.xaml;Views\UserDataView.xaml;Views\UserLoginView.xaml;
 
-False
+True
 
