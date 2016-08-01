@@ -85,11 +85,13 @@ namespace ServerCoreLib {
                     }
 
                     if (command is ClientLogoffCommand) {
+                        Console.WriteLine($"{sender} logged off.");
                         sender.Deactivate();
                         return;
                     }
 
                     if (command is ClientLoginCommand) {
+                        Console.WriteLine($"{sender} logged in.");
                         sender.Activate(((ClientLoginCommand)command).Name);
                         return;
                     }

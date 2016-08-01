@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using CommandHandler;
 using CommandHandler.ChatCommands;
 
@@ -56,6 +57,8 @@ namespace ServerCoreLib {
                     cmd.Sender = command.SenderName;
                     recipient = tracker.GetClientByName(cmd.Destination);
                     recipient.ReceiveMessageAsync(command.SenderName, cmd.Body);
+
+                    Console.WriteLine($"Send message command from {command.SenderName} to {recipient} : {cmd.Body}");
                 }
                 catch (KeyNotFoundException) {
                     Console.WriteLine($"One message was ignored. No user has that name ({cmd.Destination}).");

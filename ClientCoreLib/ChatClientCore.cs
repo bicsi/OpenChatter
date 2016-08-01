@@ -40,8 +40,6 @@ namespace ClientCoreLib {
                 Name = name
             });
             Name = name;
-            LoggedIn = true;
-            await RefreshAsync();
         }
 
         public async Task LogoutAsync() {
@@ -78,6 +76,11 @@ namespace ClientCoreLib {
 
                 return;
             }
+
+            if (comm is LoginSuccessCommand) {
+                LoggedIn = true;
+                RefreshAsync();
+            }
         }
         
 
@@ -86,7 +89,7 @@ namespace ClientCoreLib {
             DIContainer.AddInstance((IConversationDb) ConversationDb.Instance);
 
             await communicator.ConnectAsync(ip, port);
-            communicator.StartListening();
+            communicator.StartAsync();
 
             StartAutoRefreshAsync();
         }

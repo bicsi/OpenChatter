@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -7,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using CommandHandler;
+using CommandHandler.ChatCommands;
 
 namespace ConnectionHandler
 {
@@ -16,6 +18,7 @@ namespace ConnectionHandler
         private StreamWriter writer;
         private StreamReader reader;
         private CommandParser parser;
+        private ConcurrentBag<ChatCommandBase> sendQueue; 
 
         public event Action<ChatCommandBase> OnCommandReceived = delegate { };
 
@@ -42,18 +45,43 @@ namespace ConnectionHandler
             var stream = client.GetStream();
             reader = new StreamReader(stream);
             writer = new StreamWriter(stream);
+            sendQueue = new ConcurrentBag<ChatCommandBase>();
         }
 
-        public async void StartListening() {
+        private async void StartListening() {
             while (Connected) {
                 var command = await parser.ReadNext(reader);
                 OnCommandReceived(command);
             }
         }
+
+        private async void StartSending() {
+            while (Connected) {
+                var command = await FetchCommandAsync();
+                await parser.Write(command, writer);
+            }
+        }
+
+        private async Task<ChatCommandBase> FetchCommandAsync() {
+            ChatCommandBase ret = new NopCommand();
+            while (Connected) {
+                if (sendQueue.TryTake(out ret))
+                    break;
+                await Task.Delay(100);
+            }
+            return ret;
+        }
+
+        public void StartAsync() {
+            StartListening();
+            StartSending();
+        }
+
         
+
         public async Task SendCommandAsync(ChatCommandBase command) {
-            ///TODO: MAKE IT THREAD SAFE
-            await parser.Write(command, writer);
+            // Places the command in queue
+            sendQueue.Add(command);
         }
 
         public void Dispose() {

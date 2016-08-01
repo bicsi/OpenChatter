@@ -17,7 +17,7 @@
             <Button DockPanel.Dock="Right" Content="Send" Command="{Binding SendMessageCommand}"/>
             <TextBox x:Name="textBox" Text="{Binding CurrentConversation.MessageContent}" HorizontalAlignment="Stretch" TextWrapping="Wrap" DockPanel.Dock="Left"/>
         </DockPanel>
-        <ListBox Height="277" VerticalAlignment="Top" ItemsSource="{Binding CurrentConversation.Messages}"/>
+        <ListBox ItemsSource="{Binding CurrentConversation.Messages}"/>
 
     </DockPanel>
 </UserControl>
