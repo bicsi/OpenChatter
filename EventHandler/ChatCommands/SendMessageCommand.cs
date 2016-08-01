@@ -9,6 +9,7 @@ namespace CommandHandler.ChatCommands {
         public string Body { get; set; }
         public override string Code => "send";
         public override Type ParserType => typeof(SendMessageParser);
+        public DateTime DateSent { get; set; }
     }
 
     internal class SendMessageParser : CommandParser<SendMessageCommand> {   

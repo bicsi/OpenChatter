@@ -7,3 +7,4 @@ D:\.Net Projects\OpenChatter\EventHandler\bin\Debug\CommandHandler.dll
 D:\.Net Projects\OpenChatter\EventHandler\bin\Debug\CommandHandler.pdb
 D:\.Net Projects\OpenChatter\EventHandler\obj\Debug\CommandHandler.dll
 D:\.Net Projects\OpenChatter\EventHandler\obj\Debug\CommandHandler.pdb
+D:\.Net Projects\OpenChatter\EventHandler\obj\Debug\CommandHandler.csprojResolveAssemblyReference.cache

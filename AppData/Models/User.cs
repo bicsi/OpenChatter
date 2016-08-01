@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppData.Models {
     public class User : ModelBase {
-        private string name;
+        private string name = "admin";
 
         public string Name {
             get { return name; }

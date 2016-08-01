@@ -67,6 +67,7 @@
     <Compile Include="ViewModels\ActiveUserListViewModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\INavigationManager.cs" />
+    <Compile Include="ViewModels\MessageInterfaceViewModel.cs" />
     <Compile Include="ViewModels\UserLoginViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\ActiveUserListView.xaml.cs">
@@ -74,6 +75,9 @@
     </Compile>
     <Compile Include="Views\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessageInterfaceView.xaml.cs">
+      <DependentUpon>MessageInterfaceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserDataView.xaml.cs">
       <DependentUpon>UserDataView.xaml</DependentUpon>
@@ -94,6 +98,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DashboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MessageInterfaceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -3,6 +3,7 @@
 FD:\.Net Projects\OpenChatter\ChatClientUI\MainWindow.xaml;;
 FD:\.Net Projects\OpenChatter\ChatClientUI\Views\ActiveUserListView.xaml;;
 FD:\.Net Projects\OpenChatter\ChatClientUI\Views\DashboardView.xaml;;
+FD:\.Net Projects\OpenChatter\ChatClientUI\Views\MessageInterfaceView.xaml;;
 FD:\.Net Projects\OpenChatter\ChatClientUI\Views\UserDataView.xaml;;
 FD:\.Net Projects\OpenChatter\ChatClientUI\Views\UserLoginView.xaml;;
 

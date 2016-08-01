@@ -3,12 +3,14 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using CommandHandler;
 
 namespace ConnectionHandler
 {
+    
     public class TcpCommunicator : IDisposable {
         private TcpClient client;
         private StreamWriter writer;
@@ -49,8 +51,8 @@ namespace ConnectionHandler
             }
         }
         
-
         public async Task SendCommandAsync(ChatCommandBase command) {
+            ///TODO: MAKE IT THREAD SAFE
             await parser.Write(command, writer);
         }
 

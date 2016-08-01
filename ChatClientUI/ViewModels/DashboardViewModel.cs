@@ -9,11 +9,7 @@ using Utilities;
 
 namespace ChatClientUI.ViewModels {
     public class DashboardViewModel : ViewModelBase {
-        public User CurrentUser {
-            get {
-                return User.Current;
-            }
-        }
+        public User CurrentUser => User.Current;
 
         public DashboardViewModel() {
             Logout = new RelayCommand(OnLogout);

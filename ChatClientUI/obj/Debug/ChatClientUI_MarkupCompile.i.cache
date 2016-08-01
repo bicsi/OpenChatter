@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\.Net Projects\OpenChatter\ChatClientUI\App.xaml
-5903665587
+6-1210318666
 
-201293956255
+22-1852364478
 16-1382933646
-MainWindow.xaml;Views\ActiveUserListView.xaml;Views\DashboardView.xaml;Views\UserDataView.xaml;Views\UserLoginView.xaml;
+MainWindow.xaml;Views\ActiveUserListView.xaml;Views\DashboardView.xaml;Views\MessageInterfaceView.xaml;Views\UserDataView.xaml;Views\UserLoginView.xaml;
 
 True
 
