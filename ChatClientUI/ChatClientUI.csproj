@@ -64,6 +64,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>UserSettings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ActiveUserListViewModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\INavigationManager.cs" />
     <Compile Include="ViewModels\UserLoginViewModel.cs" />

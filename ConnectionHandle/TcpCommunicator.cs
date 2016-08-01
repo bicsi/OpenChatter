@@ -50,10 +50,7 @@ namespace ConnectionHandler
         }
         
 
-        public async         
-
-        Task
-SendCommandAsync(ChatCommandBase command) {
+        public async Task SendCommandAsync(ChatCommandBase command) {
             await parser.Write(command, writer);
         }
 

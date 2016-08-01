@@ -170,5 +170,11 @@ namespace ServerCoreLib {
                 Body = "Welcome to our server!"
             }, writer);
         }
+
+        public async void ReceiveActiveUsersAsync(List<string> userList) {
+            await parser.Write(new ActiveUsersCommand {
+                Users = userList
+            }, writer);
+        }
     }
 }

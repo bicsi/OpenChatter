@@ -13,12 +13,9 @@
         <vm:DashboardViewModel/>
     </UserControl.DataContext>
 
-    <Grid>
-        <ContentControl>
-            <ContentControl.Content>
-                <local:UserDataView/>
-            </ContentControl.Content>
-        </ContentControl>
-
-    </Grid>
+    <DockPanel>
+        <local:UserDataView DockPanel.Dock="Top"/>
+        <local:ActiveUserListView DockPanel.Dock="Left"/>
+        <Grid></Grid>
+    </DockPanel>
 </UserControl>

@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using CommandHandler;
 using CommandHandler.ChatCommands;
 
@@ -44,9 +40,13 @@ namespace ServerCoreLib {
             
             ServerConnection sender, recipient;
             sender = tracker.GetClientByName(command.SenderName);
+
+            if (command.Command is ActiveUsersCommand) {
+                sender.ReceiveActiveUsersAsync(tracker.GetList());
+                return;
+            }
             
-            if (command.Command is SendMessageCommand)
-            {
+            if (command.Command is SendMessageCommand) {
                 var cmd = ((SendMessageCommand)command.Command);
                 try {
                     if (cmd.Sender != command.SenderName) {
@@ -60,9 +60,11 @@ namespace ServerCoreLib {
                 catch (KeyNotFoundException) {
                     Console.WriteLine($"One message was ignored. No user has that name ({cmd.Destination}).");
                 }
+
+                return;
             }
-            else
-                throw new Exception($"Unrecognized command: {command.Command.Code}.");
+
+            throw new Exception($"Unrecognized command: {command.Command.Code}.");
         }
 
     

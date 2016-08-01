@@ -2,3 +2,4 @@ D:\.Net Projects\OpenChatter\AppData\bin\Debug\AppData.dll
 D:\.Net Projects\OpenChatter\AppData\bin\Debug\AppData.pdb
 D:\.Net Projects\OpenChatter\AppData\obj\Debug\AppData.dll
 D:\.Net Projects\OpenChatter\AppData\obj\Debug\AppData.pdb
+D:\.Net Projects\OpenChatter\AppData\obj\Debug\AppData.csprojResolveAssemblyReference.cache

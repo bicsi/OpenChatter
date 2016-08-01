@@ -66,5 +66,8 @@ namespace ServerCoreLib {
             return ret;
         }
 
+        public List<string> GetList() {
+            return clientDictionary.Keys.ToList();
+        }
     }
 }

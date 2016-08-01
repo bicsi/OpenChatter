@@ -1,6 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Net.Mime;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Windows;
 using AppData.Annotations;
 
 namespace ChatClientUI.ViewModels {
@@ -12,8 +15,25 @@ namespace ChatClientUI.ViewModels {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public virtual Task InitData() {
-            return Task.Delay(0);
+        protected bool IsDesignMode {
+            get {
+                var ret = true;
+                try {
+                    ret = DesignerProperties.GetIsInDesignMode(new DependencyObject());
+                }
+                catch (Exception e) {
+                    throw new Exception($"MainWindow: {Application.Current.MainWindow}", e);
+                }
+                return ret;
+            }
+        }
+
+        protected ViewModelBase() {
+            if (IsDesignMode)
+                InitData();
+        }
+
+        public virtual void InitData() {
         }
     }
 }

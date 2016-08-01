@@ -14,7 +14,8 @@ namespace CommandHandler.ChatCommands {
     internal class ActiveUsersParser : CommandParser<ActiveUsersCommand> {
         
         public override async Task WriteAsync(ActiveUsersCommand command, StreamWriter writer) {
-            await writer.WriteLineAsync(string.Join(" ", command.Users));            
+            if(command.Users != null)
+                await writer.WriteLineAsync(string.Join(" ", command.Users));            
         }
 
         public override async Task<ActiveUsersCommand> ReadAsync(StreamReader reader) {
