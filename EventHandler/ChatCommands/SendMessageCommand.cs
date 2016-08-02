@@ -19,13 +19,15 @@ namespace CommandHandler.ChatCommands {
             await writer.WriteLineAsync(command.Sender);
             await writer.WriteLineAsync(command.Destination);
             await writer.WriteLineAsync(command.Body);
+            await writer.WriteLineAsync(command.DateSent.ToBinary().ToString());
         }
 
         public override async Task<SendMessageCommand> ReadAsync(StreamReader reader) {
             var result = new SendMessageCommand {
                 Sender = await reader.ReadLineAsync(),
                 Destination = await reader.ReadLineAsync(),
-                Body = await reader.ReadLineAsync()
+                Body = await reader.ReadLineAsync(),
+                DateSent = DateTime.FromBinary(long.Parse(await reader.ReadLineAsync()))
             };
             return result;
         }

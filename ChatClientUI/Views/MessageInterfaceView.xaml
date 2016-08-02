@@ -13,6 +13,8 @@
     </UserControl.DataContext>
     
     <DockPanel>
+
+        <TextBlock Height="50" TextWrapping="Wrap" Text="{Binding CurrentConversation.OtherUser, StringFormat=Conversation with {0}}" DockPanel.Dock="Top"/>
         <DockPanel DockPanel.Dock="Bottom" Height="23">
             <Button DockPanel.Dock="Right" Content="Send" Command="{Binding SendMessageCommand}"/>
             <TextBox x:Name="textBox" Text="{Binding CurrentConversation.MessageContent}" HorizontalAlignment="Stretch" TextWrapping="Wrap" DockPanel.Dock="Left"/>

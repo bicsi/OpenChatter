@@ -154,11 +154,12 @@ namespace ServerCoreLib {
         /// </summary>
         /// <param name="senderName"> The name of the sender </param>
         /// <param name="content"> The content of the message </param>
-        public async void ReceiveMessageAsync(string senderName, string content) {
+        public async void ReceiveMessageAsync(string senderName, string content, DateTime dateTime) {
             await parser.Write(new SendMessageCommand {
                 Sender = senderName,
                 Destination = Name,
-                Body = content
+                Body = content,
+                DateSent = dateTime
             }, writer);
         }
 

@@ -56,7 +56,7 @@ namespace ServerCoreLib {
                     }
                     cmd.Sender = command.SenderName;
                     recipient = tracker.GetClientByName(cmd.Destination);
-                    recipient.ReceiveMessageAsync(command.SenderName, cmd.Body);
+                    recipient.ReceiveMessageAsync(command.SenderName, cmd.Body, cmd.DateSent);
 
                     Console.WriteLine($"Send message command from {command.SenderName} to {recipient} : {cmd.Body}");
                 }

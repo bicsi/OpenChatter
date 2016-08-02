@@ -39,7 +39,7 @@ namespace ConnectionHandler
                 }
                 catch(Exception e) {
                     Trace.WriteLine(e);
-                    Thread.Sleep(1000);
+                    await Task.Delay(1000);
                 }
             }
             var stream = client.GetStream();
